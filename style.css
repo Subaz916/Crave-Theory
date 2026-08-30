@@ -1135,3 +1135,48 @@ ul { list-style: none; }
   .phone-icon { width: 44px; height: 44px; min-width: 44px; }
   .phone-text strong { font-size: 17px; }
 }
+
+/* ============================================
+   STICKY WHATSAPP
+   ============================================ */
+.sticky-wa {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: var(--yellow);
+  color: var(--black);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(245,184,0,0.4);
+  z-index: 900;
+  transition: all 0.3s ease;
+  animation: pulseWaSticky 2s infinite;
+}
+.sticky-wa:hover {
+  transform: scale(1.1);
+  background: var(--yellow-bright);
+}
+.sticky-wa svg {
+  width: 34px;
+  height: 34px;
+  fill: currentColor;
+}
+@keyframes pulseWaSticky {
+  0% { box-shadow: 0 0 0 0 rgba(245,184,0, 0.7); }
+  70% { box-shadow: 0 0 0 20px rgba(245,184,0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(245,184,0, 0); }
+}
+
+@media (max-width: 768px) {
+  .sticky-wa {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+  }
+  .sticky-wa svg { width: 28px; height: 28px; }
+}
