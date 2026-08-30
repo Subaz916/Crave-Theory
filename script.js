@@ -281,6 +281,23 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+// ===== FAQ Accordion =====
+const faqQuestions = document.querySelectorAll('.faq-question');
+faqQuestions.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const isActive = item.classList.contains('active');
+    
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('active'));
+    
+    // Toggle current
+    if (!isActive) {
+      item.classList.add('active');
+    }
+  });
+});
+
 // ===== Draggable WhatsApp Button =====
 const waBtn = document.querySelector('.sticky-wa');
 if (waBtn) {
