@@ -1163,7 +1163,15 @@ ul { list-style: none; }
   .location-grid { grid-template-columns: 1fr; gap: 28px; }
   .loc-block { margin-bottom: 20px; }
 
-  .cart { width: 100%; }
+  .cart {
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    top: 20px;
+    border-top-left-radius: 20px;
+  }
+  .cart-head {
+    border-top-left-radius: 20px;
+  }
   .cart-items { padding-bottom: 110px; }
 }
 
