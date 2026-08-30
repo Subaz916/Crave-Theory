@@ -148,7 +148,7 @@ document.getElementById('cartPlace').addEventListener('click', () => {
   loader.classList.add('active');
 
   setTimeout(() => {
-    window.open('https://wa.me/923287795050?text=' + msg, '_blank');
+    window.open('https://wa.me/923277795050?text=' + msg, '_blank');
     setTimeout(() => {
       loader.classList.remove('active');
     }, 1000);
