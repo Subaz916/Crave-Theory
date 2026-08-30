@@ -287,6 +287,7 @@ if (waBtn) {
   let isDragging = false;
   let hasDragged = false;
   let startX, startY, initialX, initialY;
+  let lastX = 0, lastTime = 0;
   
   waBtn.addEventListener('click', (e) => {
     if (hasDragged) {
@@ -303,6 +304,10 @@ if (waBtn) {
     const clientY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
     startX = clientX;
     startY = clientY;
+    lastX = clientX;
+    lastTime = Date.now();
+    
+    waBtn.style.transform = 'scale(0.9)'; // Motion animation start
     
     const rect = waBtn.getBoundingClientRect();
     initialX = rect.left;
@@ -327,6 +332,18 @@ if (waBtn) {
       hasDragged = true;
     }
     
+    // Calculate velocity for motion tilt
+    const now = Date.now();
+    const dt = Math.max(1, now - lastTime);
+    const vx = (clientX - lastX) / dt;
+    lastX = clientX;
+    lastTime = now;
+    
+    let rotation = vx * 15;
+    rotation = Math.max(-20, Math.min(20, rotation)); // Clamp tilt
+    
+    waBtn.style.transform = `scale(0.9) rotate(${rotation}deg)`;
+    
     let newX = initialX + dx;
     let newY = initialY + dy;
     
@@ -342,7 +359,8 @@ if (waBtn) {
   const onDragEnd = () => {
     if (!isDragging) return;
     isDragging = false;
-    waBtn.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'; // Bouncy back animation
+    waBtn.style.transition = 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)'; // Bouncy back animation
+    waBtn.style.transform = 'scale(1) rotate(0deg)'; // Reset motion animation
     
     const rect = waBtn.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
