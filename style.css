@@ -1128,8 +1128,8 @@ ul { list-style: none; }
 
   .footer-inner { grid-template-columns: 1fr 1fr; gap: 24px; }
   .cart-total strong { font-size: 28px; }
-  .cart-order-opts { flex-direction: column; }
-  .cart-order-opts .btn { width: 100%; }
+  .cart-order-opts { flex-direction: row; }
+  .cart-order-opts .btn { font-size: 14px; padding: 10px 8px; }
 
   .phone-card { padding: 18px; gap: 12px; }
   .phone-icon { width: 44px; height: 44px; min-width: 44px; }
