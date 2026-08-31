@@ -160,7 +160,16 @@ document.addEventListener('click', (e) => {
   const sizeBtn = e.target.closest('.size-btn');
   if (!sizeBtn) return;
   const card = sizeBtn.closest('.food-card');
-  const price = parseInt(sizeBtn.dataset.s === 'Large' ? (card.dataset.size ? JSON.parse(card.dataset.size).Large : card.dataset.price) : (card.dataset.size ? JSON.parse(card.dataset.size).Regular || JSON.parse(card.dataset.size).Small : card.dataset.price), 10);
+  const sizeKey = sizeBtn.dataset.s;
+  let price = parseInt(card.dataset.price, 10);
+  if (card.dataset.size) {
+    const sizes = JSON.parse(card.dataset.size);
+    if (sizes[sizeKey] != null) price = sizes[sizeKey];
+    else {
+      const fallback = Object.values(sizes).find(v => v != null);
+      if (fallback != null) price = fallback;
+    }
+  }
   card.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
   sizeBtn.classList.add('active');
   const addBtn = card.querySelector('.btn-add');
